@@ -1,0 +1,154 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-test-result-heading" data-cy="TestResultCreateUpdateHeading">Create or edit a Test Result</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_creationDate">Creation Date</label>
+          <div class="input-group">
+            <input
+              id="field_creationDate"
+              data-cy="creationDate"
+              type="text"
+              class="form-control"
+              name="creationDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="creationDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_testName">Test Name</label>
+          <input type="text" class="form-control" name="testName" id="field_testName" data-cy="testName" formControlName="testName" />
+          <div *ngIf="editForm.get('testName')!.invalid && (editForm.get('testName')!.dirty || editForm.get('testName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('testName')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('testName')?.errors?.minlength">
+              This field is required to be at least 5 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('testName')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_method">Method</label>
+          <input type="text" class="form-control" name="method" id="field_method" data-cy="method" formControlName="method" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_testProperties">Test Properties</label>
+          <input
+            type="text"
+            class="form-control"
+            name="testProperties"
+            id="field_testProperties"
+            data-cy="testProperties"
+            formControlName="testProperties"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_testStatus">Test Status</label>
+          <select class="form-control" name="testStatus" formControlName="testStatus" id="field_testStatus" data-cy="testStatus">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let status of statusValues" [value]="status">status</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_failureMessage">Failure Message</label>
+          <input
+            type="text"
+            class="form-control"
+            name="failureMessage"
+            id="field_failureMessage"
+            data-cy="failureMessage"
+            formControlName="failureMessage"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_failureClassification">Failure Classification</label>
+          <select
+            class="form-control"
+            name="failureClassification"
+            formControlName="failureClassification"
+            id="field_failureClassification"
+            data-cy="failureClassification"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let failureClassification of failureClassificationValues" [value]="failureClassification">
+              failureClassification
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fix">Fix</label>
+          <input type="text" class="form-control" name="fix" id="field_fix" data-cy="fix" formControlName="fix" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_comments">Comments</label>
+          <input type="text" class="form-control" name="comments" id="field_comments" data-cy="comments" formControlName="comments" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_execution">Execution</label>
+          <select class="form-control" id="field_execution" data-cy="execution" name="execution" formControlName="execution">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="executionOption.id === editForm.get('execution')!.value?.id ? editForm.get('execution')!.value : executionOption"
+              *ngFor="let executionOption of executionsSharedCollection; trackBy: trackExecutionById"
+            >
+              {{ executionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bug">Bug</label>
+          <select class="form-control" id="field_bug" data-cy="bug" name="bug" formControlName="bug">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="bugOption.id === editForm.get('bug')!.value?.id ? editForm.get('bug')!.value : bugOption"
+              *ngFor="let bugOption of bugsSharedCollection; trackBy: trackBugById"
+            >
+              {{ bugOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

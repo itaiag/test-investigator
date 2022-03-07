@@ -1,0 +1,9 @@
+export enum FailureClassification {
+  TO_INVESTIGATE = 'TO_INVESTIGATE',
+
+  PRODUCT_BUG = 'PRODUCT_BUG',
+
+  AUTO_BUG = 'AUTO_BUG',
+
+  SYSTEM_ISSUE = 'SYSTEM_ISSUE',
+}

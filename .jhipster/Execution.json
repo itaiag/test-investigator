@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20220307082028",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "execution",
+  "fields": [
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "executionDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "executionProperties",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Execution",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "testResult",
+      "otherEntityRelationshipName": "execution",
+      "relationshipName": "testResult",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

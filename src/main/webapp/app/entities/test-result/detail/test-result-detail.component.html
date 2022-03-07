@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="testResult">
+      <h2 data-cy="testResultDetailsHeading"><span>Test Result</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ testResult.id }}</span>
+        </dd>
+        <dt><span>Creation Date</span></dt>
+        <dd>
+          <span>{{ testResult.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Test Name</span></dt>
+        <dd>
+          <span>{{ testResult.testName }}</span>
+        </dd>
+        <dt><span>Method</span></dt>
+        <dd>
+          <span>{{ testResult.method }}</span>
+        </dd>
+        <dt><span>Test Properties</span></dt>
+        <dd>
+          <span>{{ testResult.testProperties }}</span>
+        </dd>
+        <dt><span>Test Status</span></dt>
+        <dd>
+          <span>{{ testResult.testStatus }}</span>
+        </dd>
+        <dt><span>Failure Message</span></dt>
+        <dd>
+          <span>{{ testResult.failureMessage }}</span>
+        </dd>
+        <dt><span>Failure Classification</span></dt>
+        <dd>
+          <span>{{ testResult.failureClassification }}</span>
+        </dd>
+        <dt><span>Fix</span></dt>
+        <dd>
+          <span>{{ testResult.fix }}</span>
+        </dd>
+        <dt><span>Comments</span></dt>
+        <dd>
+          <span>{{ testResult.comments }}</span>
+        </dd>
+        <dt><span>Execution</span></dt>
+        <dd>
+          <div *ngIf="testResult.execution">
+            <a [routerLink]="['/execution', testResult.execution?.id, 'view']">{{ testResult.execution?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Bug</span></dt>
+        <dd>
+          <div *ngIf="testResult.bug">
+            <a [routerLink]="['/bug', testResult.bug?.id, 'view']">{{ testResult.bug?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/test-result', testResult.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

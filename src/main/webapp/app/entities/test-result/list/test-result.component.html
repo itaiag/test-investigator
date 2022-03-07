@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="TestResultHeading">
+    <span>Test Results</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-test-result"
+        [routerLink]="['/test-result/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Test Result </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="testResults?.length === 0">
+    <span>No testResults found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="testResults && testResults.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Creation Date</span></th>
+          <th scope="col"><span>Test Name</span></th>
+          <th scope="col"><span>Method</span></th>
+          <th scope="col"><span>Test Properties</span></th>
+          <th scope="col"><span>Test Status</span></th>
+          <th scope="col"><span>Failure Message</span></th>
+          <th scope="col"><span>Failure Classification</span></th>
+          <th scope="col"><span>Fix</span></th>
+          <th scope="col"><span>Comments</span></th>
+          <th scope="col"><span>Execution</span></th>
+          <th scope="col"><span>Bug</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let testResult of testResults; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/test-result', testResult.id, 'view']">{{ testResult.id }}</a>
+          </td>
+          <td>{{ testResult.creationDate | formatMediumDate }}</td>
+          <td>{{ testResult.testName }}</td>
+          <td>{{ testResult.method }}</td>
+          <td>{{ testResult.testProperties }}</td>
+          <td>{{ testResult.testStatus }}</td>
+          <td>{{ testResult.failureMessage }}</td>
+          <td>{{ testResult.failureClassification }}</td>
+          <td>{{ testResult.fix }}</td>
+          <td>{{ testResult.comments }}</td>
+          <td>
+            <div *ngIf="testResult.execution">
+              <a [routerLink]="['/execution', testResult.execution?.id, 'view']">{{ testResult.execution?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="testResult.bug">
+              <a [routerLink]="['/bug', testResult.bug?.id, 'view']">{{ testResult.bug?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/test-result', testResult.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/test-result', testResult.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(testResult)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

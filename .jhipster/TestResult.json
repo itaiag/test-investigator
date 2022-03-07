@@ -1,0 +1,70 @@
+{
+  "applications": "*",
+  "changelogDate": "20220307082029",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "test_result",
+  "fields": [
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "testName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "5"
+    },
+    {
+      "fieldName": "method",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "testProperties",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "testStatus",
+      "fieldType": "Status",
+      "fieldValues": "SUCCESS,FAILURE,ERROR,WARNING"
+    },
+    {
+      "fieldName": "failureMessage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "failureClassification",
+      "fieldType": "FailureClassification",
+      "fieldValues": "TO_INVESTIGATE,PRODUCT_BUG,AUTO_BUG,SYSTEM_ISSUE"
+    },
+    {
+      "fieldName": "fix",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "comments",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TestResult",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "execution",
+      "otherEntityRelationshipName": "testResult",
+      "relationshipName": "execution",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "bug",
+      "otherEntityRelationshipName": "testResult",
+      "relationshipName": "bug",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

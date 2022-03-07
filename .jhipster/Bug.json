@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220307082030",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "bug",
+  "fields": [
+    {
+      "fieldName": "bugName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "BugStatus",
+      "fieldValues": "OPEN,CLOSE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Bug",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "testResult",
+      "otherEntityRelationshipName": "bug",
+      "relationshipName": "testResult",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

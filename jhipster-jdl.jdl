@@ -1,0 +1,49 @@
+
+enum Status {
+  SUCCESS,
+  FAILURE,
+  ERROR,
+  WARNING
+}
+
+enum FailureClassification {
+	TO_INVESTIGATE,
+    PRODUCT_BUG,
+    AUTO_BUG,
+    SYSTEM_ISSUE
+}
+
+enum BugStatus {
+	OPEN,
+    CLOSE    
+}
+
+entity Execution(execution) {
+	creationDate LocalDate,
+    executionDescription String,
+    executionProperties String    
+}
+
+entity TestResult(testResult) {
+	creationDate LocalDate,    
+    testName String required minlength(5) maxlength(50),
+    method String,
+    testProperties String,
+    testStatus Status,
+    failureMessage String,
+    failureClassification FailureClassification,    
+    fix String,
+    comments String
+}
+
+entity Bug(bug) {
+	bugName String,
+    description String,
+    status BugStatus,
+}
+
+relationship ManyToOne {
+	TestResult to Execution
+    TestResult to Bug
+}
+
