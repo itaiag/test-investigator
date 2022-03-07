@@ -27,7 +27,7 @@
     {
       "fieldName": "testStatus",
       "fieldType": "Status",
-      "fieldValues": "SUCCESS,FAILURE,ERROR,WARNING"
+      "fieldValues": "SUCCESS (Success),FAILURE (Failure),ERROR (Error),WARNING (Warning)"
     },
     {
       "fieldName": "failureMessage",
@@ -36,7 +36,7 @@
     {
       "fieldName": "failureClassification",
       "fieldType": "FailureClassification",
-      "fieldValues": "TO_INVESTIGATE,PRODUCT_BUG,AUTO_BUG,SYSTEM_ISSUE"
+      "fieldValues": "TO_INVESTIGATE (To investigate),PRODUCT_BUG (Product bug),AUTO_BUG (Automation bug),SYSTEM_ISSUE (System issue)"
     },
     {
       "fieldName": "fix",

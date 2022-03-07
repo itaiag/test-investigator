@@ -1,5 +1,5 @@
 export enum BugStatus {
-  OPEN = 'OPEN',
+  OPEN = 'Open',
 
-  CLOSE = 'CLOSE',
+  CLOSE = 'Close',
 }

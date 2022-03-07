@@ -1,21 +1,21 @@
 
 enum Status {
-  SUCCESS,
-  FAILURE,
-  ERROR,
-  WARNING
+  SUCCESS("Success"),
+  FAILURE("Failure"),
+  ERROR("Error"),
+  WARNING("Warning")
 }
 
 enum FailureClassification {
-	TO_INVESTIGATE,
-    PRODUCT_BUG,
-    AUTO_BUG,
-    SYSTEM_ISSUE
+	TO_INVESTIGATE("To investigate"),
+    PRODUCT_BUG("Product bug"),
+    AUTO_BUG("Automation bug"),
+    SYSTEM_ISSUE("System issue")
 }
 
 enum BugStatus {
-	OPEN,
-    CLOSE    
+	OPEN("Open"),
+    CLOSE("Close")
 }
 
 entity Execution(execution) {

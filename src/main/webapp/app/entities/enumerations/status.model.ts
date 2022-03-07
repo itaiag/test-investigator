@@ -1,9 +1,9 @@
 export enum Status {
-  SUCCESS = 'SUCCESS',
+  SUCCESS = 'Success',
 
-  FAILURE = 'FAILURE',
+  FAILURE = 'Failure',
 
-  ERROR = 'ERROR',
+  ERROR = 'Error',
 
-  WARNING = 'WARNING',
+  WARNING = 'Warning',
 }

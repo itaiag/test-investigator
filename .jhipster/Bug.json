@@ -16,7 +16,7 @@
     {
       "fieldName": "status",
       "fieldType": "BugStatus",
-      "fieldValues": "OPEN,CLOSE"
+      "fieldValues": "OPEN (Open),CLOSE (Close)"
     }
   ],
   "fluentMethods": true,
