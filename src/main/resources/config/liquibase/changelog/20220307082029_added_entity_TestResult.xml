@@ -17,7 +17,7 @@
             <column name="creation_date" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="test_name" type="varchar(50)">
+            <column name="test_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="method" type="varchar(255)">

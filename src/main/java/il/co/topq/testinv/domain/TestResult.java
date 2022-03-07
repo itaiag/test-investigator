@@ -27,8 +27,8 @@ public class TestResult implements Serializable {
     private LocalDate creationDate;
 
     @NotNull
-    @Size(min = 5, max = 50)
-    @Column(name = "test_name", length = 50, nullable = false)
+    @Size(min = 5)
+    @Column(name = "test_name", nullable = false)
     private String testName;
 
     @Column(name = "method")

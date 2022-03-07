@@ -29,7 +29,7 @@ export class TestResultUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     creationDate: [],
-    testName: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    testName: [null, [Validators.required, Validators.minLength(5)]],
     method: [],
     testProperties: [],
     testStatus: [],
